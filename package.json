@@ -1,16 +1,18 @@
 {
-  "name": "Generic Drupal Web Components",
+  "name": "@gdwc/components",
   "version": "1.0.0",
-  "description": "Inspired by @generic-components/components this project aims to create a library of generic web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by Drupal",
+  "description": "A library of generic web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by Drupal",
   "main": "index.js",
   "scripts": {
-    "watch": "web-dev-server --node-resolve --watch --open",
+    "watch": "web-dev-server --node-resolve --watch --open"
   },
   "repository": {
     "type": "git",
     "url": "git@git.drupal.org:project/gdwc.git"
   },
-  "keywords": ["drupal"],
+  "keywords": [
+    "drupal"
+  ],
   "licenses": [
     {
       "type": "GPL-2.0-or-later",
