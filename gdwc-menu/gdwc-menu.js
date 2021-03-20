@@ -1,18 +1,21 @@
-export class GdwcMenu extends HTMLElement {
+import { LitElement, html } from 'lit-element';
 
-  constructor() {
-    super();
+export class GdwcMenu extends LitElement {
+  static get properties() {
+    return {
+      /**
+       * Heading for the menu.
+       */
+      heading: { type: String },
+    }
+  }
 
-    this.attachShadow({ mode: 'open' });
-
-    const template = document.createElement('template');
-    template.innerHTML = `
+  render() {
+    return html`
       <div class="gdwc-menu">
-        <h2>${this.getAttribute('heading')}</h2>
+        <h2>${this.heading}</h2>
       </div>
-    `;
-
-    this.shadowRoot.appendChild(template.content);
+    `
   }
 
 }

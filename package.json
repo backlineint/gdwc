@@ -21,5 +21,8 @@
   ],
   "devDependencies": {
     "@web/dev-server": "^0.1.8"
+  },
+  "dependencies": {
+    "lit-element": "^2.4.0"
   }
 }
