@@ -1,3 +1,3 @@
 import { GdwcMenu } from './gdwc-menu/gdwc-menu.js';
 
-customElements.define('gdwc-menu', GdwcMenu);
+customElements.get("gdwc-menu") || customElements.define('gdwc-menu', GdwcMenu);

@@ -2,9 +2,21 @@
   "name": "@gdwc/components",
   "version": "1.0.0",
   "description": "A library of generic web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by Drupal",
-  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/components.umd.js",
+  "module": "./dist/components.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/components.es.js",
+      "require": "./dist/components.umd.js"
+    }
+  },
   "scripts": {
-    "watch": "web-dev-server --node-resolve --watch --open"
+    "start": "npm run dev",
+    "dev": "vite",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -19,10 +31,11 @@
       "url": "http://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
     }
   ],
-  "devDependencies": {
-    "@web/dev-server": "^0.1.8"
-  },
   "dependencies": {
+    "linkset-menu": "0.0.2",
     "lit-element": "^2.4.0"
+  },
+  "devDependencies": {
+    "vite": "^2.1.0"
   }
 }

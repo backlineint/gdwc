@@ -1,1 +1,1 @@
-export { GdwcMenu } from './gdwc-menu/gdwc-menu.js'
+import './menu';
