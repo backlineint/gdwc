@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html } from 'https://cdn.skypack.dev/lit-element';
 import { denormalize } from 'linkset-menu';
 
 function renderMenuItem(item) {
