@@ -7,8 +7,10 @@ export default defineConfig({
       entry: 'index.js',
       name: 'components',
     },
-    rollupOptions: {
-      external: /^lit-element/
-    }
+    // Bundling lit-element to simplify hosting for now, but may want to make
+    // this an external at some point.
+    // rollupOptions: {
+    //   external: /^lit-element/
+    // }
   }
 })
