@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "A library of generic web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by Drupal",
   "files": [
-    "dist"
+    "dist",
+    "index.js",
+    "menu.js",
+    "gdwc-menu"
   ],
   "main": "./dist/components.umd.js",
   "module": "./dist/components.es.js",
@@ -11,6 +14,10 @@
     ".": {
       "import": "./dist/components.es.js",
       "require": "./dist/components.umd.js"
+    },
+    "./menu": {
+      "import": "./menu.js",
+      "require": "./menu.js"
     }
   },
   "scripts": {
@@ -20,17 +27,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.drupal.org:project/gdwc.git"
+    "url": "https://git.drupalcode.org/project/gdwc.git"
+  },
+  "homepage": "https://www.drupal.org/project/gdwc",
+  "bugs": {
+    "url": "https://www.drupal.org/project/issues/gdwc"
   },
   "keywords": [
-    "drupal"
+    "drupal",
+    "web components"
   ],
-  "licenses": [
-    {
-      "type": "GPL-2.0-or-later",
-      "url": "http://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
-    }
-  ],
+  "license": "GPL-2.0-or-later",
   "dependencies": {
     "linkset-menu": "0.0.2",
     "lit-element": "^2.4.0"
