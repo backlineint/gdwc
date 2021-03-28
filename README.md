@@ -2,6 +2,8 @@
 
 Inspired by [@generic-components/components](https://www.npmjs.com/package/@generic-components/components) this project aims to create a library of generic web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by [Drupal](https://www.drupal.org).
 
+A demo of the current components can be found at: [https://gdwc.netlify.app/](https://gdwc.netlify.app/)
+
 ## Usage
 
 ### Via NPM
