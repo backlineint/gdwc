@@ -1,28 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { denormalize } from 'linkset-menu';
 
-function renderMenuItem(item) {
-  if (item.link.href) {
-    return html`<li><a href=${item.link.href}>${item.link.attributes.title}</a></li>`;
-  }
-  else {
-    if (item.children.length) {
-      return html`<li>${item.link.attributes.title} ${renderMenuLevel(item.children)}</li>`;
-    }
-    else {
-      return html`<li>${item.link.attributes.title}</li>`;
-    }
-  }
-}
-
-function renderMenuLevel(level) {
-  return html`<ul>
-    ${level.map((item) => {
-      return renderMenuItem(item);
-    })}
-  </ul>`
-}
-
 export class GdwcMenu extends LitElement {
   static get properties() {
     return {
@@ -62,6 +40,28 @@ export class GdwcMenu extends LitElement {
     }
   }
 
+  renderMenuItem(item) {
+    if (item.link.href) {
+      return html`<li><a href=${item.link.href}>${item.link.attributes.title}</a></li>`;
+    }
+    else {
+      if (item.children.length) {
+        return html`<li>${item.link.attributes.title} ${this.renderMenuLevel(item.children)}</li>`;
+      }
+      else {
+        return html`<li>${item.link.attributes.title}</li>`;
+      }
+    }
+  }
+
+  renderMenuLevel(level) {
+    return html`<ul>
+      ${level.map((item) => {
+        return this.renderMenuItem(item);
+      })}
+    </ul>`
+  }
+
   fetchData(baseURL, menuID) {
     const url = `${baseURL}/system/menu/${menuID}/linkset`;
 
@@ -87,7 +87,7 @@ export class GdwcMenu extends LitElement {
     return html`
       <div class="gdwc-menu">
         <h2>${this.branding}</h2>
-        ${renderMenuLevel(this.tree)}
+        ${this.renderMenuLevel(this.tree)}
       </div>
     `
   }
