@@ -1,7 +1,8 @@
 import { html } from 'lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
-import "../menu";
+import "../../menu";
+import "./gdwc-menu-extended.js";
 
 const tree = JSON.stringify([
   {
@@ -82,18 +83,67 @@ export default {
         type: 'object',
       }
     },
+    id: {
+      table: {
+        disable: true
+      }
+    },
+    "menu-level": {
+      description: 'Stylable part for menu level. Example selector: gdwc-menu::part(menu-level) {}',
+      table: {
+        category: 'shadow parts',
+      },
+    },
+    "menu-item": {
+      description: 'Stylable part for menu item. Example selector: gdwc-menu::part(menu-item) {}',
+      table: {
+        category: 'shadow parts',
+      },
+    },
+    "brand": {
+      description: 'Slot that can be used to override site branding.',
+      table: {
+        category: 'slots',
+      },
+    },
   }
 };
 
-const Template = ({ branding, baseUrl, menuId, tree }) => {
+const Template = ({ branding, baseUrl, menuId, tree, background = 'skyblue', className, id, slot }) => {
   return html`
-    <gdwc-menu 
-      branding=${branding} 
-      baseurl=${ifDefined(baseUrl)} 
-      menuId=${ifDefined(menuId)} 
+    <style>
+      #slotted h1 {
+        display: inline;
+        padding: .5rem;
+        background-color: hotpink;
+        border: 5px solid black;
+        font-family: "Courier";
+      }
+      gdwc-menu#parts::part(menu-level) {
+        border: 5px dotted red;
+        background: hotpink;
+      }
+      gdwc-menu#parts::part(menu-item) {
+        font-size: 20px;
+        list-style: none;
+        background: aliceblue;
+      }
+    </style>
+    <gdwc-menu
+      branding=${branding}
+      id=${ifDefined(id)}
+      baseurl=${ifDefined(baseUrl)}
+      menuId=${ifDefined(menuId)}
       tree=${ifDefined(tree)}
     >
+      ${slot ? html`<h1 slot="brand">👾👾👾 Brand Slot 👾👾👾</h1>` : '' }
     </gdwc-menu>
+  `
+}
+
+const TemplateExtended = ({ branding, baseUrl, menuId }) => {
+  return html`
+    <gdwc-menu-extended branding=${branding} baseurl=${ifDefined(baseUrl)} menuId=${ifDefined(menuId)}></gdwc-menu-extended>
   `
 }
 
@@ -117,3 +167,21 @@ AccountMenu.args = {
   menuId: 'account',
 };
 
+export const StyledByShadowParts = Template.bind({});
+StyledByShadowParts.args = {
+  ...Primary.args,
+  id: 'parts'
+};
+
+export const BrandSlotOverride = Template.bind({});
+BrandSlotOverride.args = {
+  ...Primary.args,
+  id: 'slotted',
+  slot: true
+};
+
+export const ClassExtendOverride = TemplateExtended.bind({});
+ClassExtendOverride.args = {
+  ...Primary.args,
+  branding: 'gdwc-menu-extended'
+};

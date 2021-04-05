@@ -1,7 +1,21 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { denormalize } from 'linkset-menu';
 
 export class GdwcMenu extends LitElement {
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+      }
+      :host(.dark) {
+        background-color: black;
+        color: white;
+      }
+      :host(.light) {
+        background-color: lightgrey;
+      }
+    `;
+  }
   static get properties() {
     return {
       /**
@@ -40,26 +54,48 @@ export class GdwcMenu extends LitElement {
     }
   }
 
-  renderMenuItem(item) {
-    if (item.link.href) {
-      return html`<li><a href=${item.link.href}>${item.link.attributes.title}</a></li>`;
-    }
-    else {
-      if (item.children.length) {
-        return html`<li>${item.link.attributes.title} ${this.renderMenuLevel(item.children)}</li>`;
-      }
-      else {
-        return html`<li>${item.link.attributes.title}</li>`;
-      }
-    }
+  menuLevelTemplate(levels) {
+    return html`<ul part="menu-level">
+      ${levels}
+    </ul>`;
+  }
+
+  menuParentTemplate(title, children) {
+    return html`<li part="menu-item">${title} ${this.renderMenuLevel(children)}</li>`;
+  }
+
+  menuLinkTemplate(title, href) {
+    return html`<li part="menu-item"><a href=${href}>${title}</a></li>`;
+  }
+
+  menuItemTemplate(title) {
+    return html`<li part="menu-item">${title}</li>`;
   }
 
   renderMenuLevel(level) {
-    return html`<ul>
-      ${level.map((item) => {
-        return this.renderMenuItem(item);
-      })}
-    </ul>`
+    const levels = level.map((item) => {
+      return this.renderMenuItem(item);
+    });
+
+    return this.menuLevelTemplate(levels);
+  }
+
+  renderMenuItem(item) {
+    const title = item?.link?.attributes?.title;
+    const href = item?.link?.href;
+    const children = item?.children;
+
+    if (href) {
+      return this.menuLinkTemplate(title, href);
+    }
+    else {
+      if (children.length) {
+        return this.menuParentTemplate(title, children);
+      }
+      else {
+        return this.menuItemTemplate(title);
+      }
+    }
   }
 
   fetchData(baseURL, menuID) {
@@ -86,7 +122,7 @@ export class GdwcMenu extends LitElement {
   render() {
     return html`
       <div class="gdwc-menu">
-        <h2>${this.branding}</h2>
+        <slot name="brand"><h2>${this.branding}</h2></slot>
         ${this.renderMenuLevel(this.tree)}
       </div>
     `

@@ -1,0 +1,189 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Overview/Styling API" />
+
+# Styling API
+
+While the specifics vary by component, there are a variety of methods exposed that make it possible
+to alter the look and feel of these components. For more information on these approaches, consult [Options for Styling Web Components](https://nolanlawson.com/2021/01/03/options-for-styling-web-components/).
+
+## Styling Hooks In Use
+
+### Shadow Parts
+
+Explicitly defined css parts that can be styled outside of the shadow DOM.
+
+Example: `menu-level` and `menu-item` parts defined in `gdwc-menu` [(Live example)](/?path=/story/components-menu--styled-by-shadow-parts)
+
+Outside of the component, target these parts with css like:
+
+```css
+gdwc-menu#::part(menu-level) {
+  border: 5px dotted red;
+  background: hotpink;
+}
+gdwc-menu::part(menu-item) {
+  font-size: 20px;
+  list-style: none;
+  background: aliceblue;
+}
+```
+
+### Slots
+
+A placeholder that can be filled with markup from outside of the shadow DOM.
+
+Example: `brand` slot defined in `gdwc-menu` [(Live example)](/?path=/story/components-menu--brand-slot-override)
+
+```html
+<style>
+  h1 {
+    display: inline;
+    padding: .5rem;
+    background-color: hotpink;
+    border: 5px solid black;
+    font-family: "Courier";
+  }
+</style>
+<gdwc-menu
+  branding="API Driven Menu"
+  baseUrl="https://decoupled-menus.jsonapi.dev"
+  menuId="main"
+>
+  <h1 slot="brand">👾👾👾 Brand Slot 👾👾👾</h1>
+</gdwc-menu>
+```
+
+### Extending The Component Class
+
+Rather than using the existing styling hooks, it is possible to extend the class used for any of these components.
+This approach makes it possible to completely override portions of a component including the
+styles() and render() methods. This allows developers to provide different styling and markup, but use the existing
+methods to fetch data and render the levels of the menu. It provides the greatest flexibility, but also
+comes with the largest amount of responsibility.
+
+Example: overriding `styles()` `render()` and exposed template methods defined in `gdwc-menu` [(Live example)](/?path=/story/components-menu--class-extend-override)
+
+```js
+import { html, css } from 'lit-element';
+import { GdwcMenu } from '../../gdwc-menu/gdwc-menu.js';
+
+export class GdwcMenuExtended extends GdwcMenu {
+  // Completely overrides shadow DOM styles
+  static get styles() {
+    return css`
+      :host {
+        display: block;
+        font-family: 'Courier New', Courier, monospace;
+      }
+      h2 {
+        text-align: center;
+      }
+      ul {
+        padding: 0;
+        margin: 0;
+        background: lightgray
+      }
+      li {
+        list-style: none;
+        padding: 1rem 2rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      li:hover {
+        background-color: green;
+      }
+      li a {
+        color: black;
+      }
+      ul > li > ul {
+        margin-top: 1rem;
+      }
+      ul > li > ul > li:hover {
+        background-color: lightgreen;
+      }
+    `;
+  }
+
+  // Overrides menuItemTemplate to add an emoji to output
+  menuItemTemplate = (title) => {
+    return html`<li part="menu-item">🍩 ${title}</li>`;
+  }
+
+  render() {
+    return html`
+      <div class="gdwc-menu-extended">
+        <slot name="brand"><h2>${this.branding}</h2></slot>
+        <p>We're implementing the render method here, and could output whatever we want.
+        Or we could continue to use the supporting rendering methods on the parent class.</p>
+        ${this.renderMenuLevel(this.tree)}
+      </div>
+    `
+  }
+}
+
+customElements.get("gdwc-menu-extended") || customElements.define('gdwc-menu-extended', GdwcMenuExtended);
+```
+
+## To Be Implemented
+
+### CSS Custom Properties
+
+As this system evolves, we will likely want to make use of common CSS custom properties in order to make
+it easier to override styles consistently throughout all components.
+
+If for example a component implemented the following styles:
+
+```js
+static get styles() {
+  return css`
+    :host {
+      display: block;
+      background-color: var(--background);
+    }
+`;
+```
+
+Consuming applications could override it with the following css:
+
+```css
+gdwc-menu {
+  --background: ${background};
+}
+```
+
+Or that variable could even be set higher in scope in order to cascade to all components that use it.
+
+## Not Currently Used
+
+### Classes
+
+Another option could be to define a specific set of expected classes that could be used
+to impact component styling. This is commonly used for theming for example.
+
+If our component implemented the following shadow DOM styles:
+
+```js
+static get styles() {
+  return css`
+    :host(.dark) {
+      background-color: black;
+      color: white;
+    }
+    :host(.light) {
+      background-color: lightgrey;
+    }
+`;
+```
+
+We could enable dark mode by adding the following class to an instance of the component:
+
+```html
+<gdwc-menu
+  class="dark"
+  branding="API Driven Menu"
+  baseUrl="https://decoupled-menus.jsonapi.dev"
+  menuId="main"
+>
+</gdwc-menu>
+```
