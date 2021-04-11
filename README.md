@@ -2,7 +2,7 @@
 
 Inspired by [@generic-components/components](https://www.npmjs.com/package/@generic-components/components) this project aims to create a library of generic web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by [Drupal](https://www.drupal.org).
 
-A demo of the current components can be found at: [https://gdwc.netlify.app/](https://gdwc.netlify.app/)
+A demo of the current components can be found at: [https://gdwc.netlify.app/](https://gdwc.netlify.app/) and you can also [watch a brief project overview video](https://www.youtube.com/watch?v=eWnMEbNLbws).
 
 ## Usage
 
@@ -38,3 +38,7 @@ Note: using the baseUrl and menuId attributes with the gdwc-custom element requi
 * It should be easy to use these web components in decoupled Drupal projects with API data provided by Drupal Core.
 * It should also be possible to use these same components within Drupal's traditional Twig based templating engine.
 * While additional components may be contributed, this project will primarily focus on creating components following along with [related strategic Drupal initiatives](https://www.drupal.org/project/decoupled_menus_initiative).
+
+## Contributing
+
+Please consult our [documentation for contributors](https://gdwc.netlify.app/?path=/story/overview-contributing--page).

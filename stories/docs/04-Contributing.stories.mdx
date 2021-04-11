@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Overview/Contributing" />
+
+# Contributing
+
+We'd love your help.
+
+## Code of conduct
+
+Be awesome to each other, have fun, and abide by the [Drupal Code of Conduct](https://www.drupal.org/dcoc).
+
+## Submitting Issues
+
+This project is [managed on Drupal.org](https://www.drupal.org/project/gdwc). New issues can be submitted in [the project's issue queue](https://www.drupal.org/project/issues/gdwc).
+
+## Code Contributions
+
+If one hasn't been submitted already, [submit an issue in the issue queue](https://www.drupal.org/node/add/project-issue/gdwc). 
+From the issue, follow Drupal's [issue fork workflow](https://www.drupal.org/docs/develop/git/using-git-to-contribute-to-drupal/creating-issue-forks-and-merge-requests) to fork the codebase, make changes, and create a merge request.
+
+## Local Development Workflow
+
+Prerequisites: steps below assume that you have the [latest LTS version of NodeJS](https://nodejs.org/en/download/) installed.
+
+Install the latest development dependencies by running:
+
+    npm install
+
+This project currently uses [Storybook for Web Components](https://storybook.js.org/docs/web-components/get-started/introduction) as a development environment.
+After installing, you can launch storybook in development mode by running:
+
+    npm run storybook
+
+Changes made to components or stories will live reload in your browser.
+
+To create a production build, run:
+
+    npm run build
+
+Components are bundled for production using [Vite](https://vitejs.dev/).
+
+## Project Structure
+
+* **Components** - components live in a top level directory with the same name as the custom element. Ex: `/gdwc-menu`
+* **Stories** - stories live in a subdirectory inside `/stories` with the same name as the custom element. Ex: `/stories/gdwc-menu`
+* **Documentation** documentation lives in the `/stories/docs` directory.
+
+## Styling API
+
+Approaches to exposing component styling hooks are outlined in the [Styling API documentation](/?path=/story/overview-styling-api--page).
+
+## Editing documentation
+
+This storybook contains two main sources of documentation and each requires a slightly different approach to editing.
+
+* **Component Documentation** - component documentation lives in the related story file. Ex: `/stories/gdwc-menu/gdwc-menu.stories.js`.
+The main focus here is documenting all of the possible arguments for each component - properties, slots, shadow parts, etc. 
+For more information on writing stories, consult [the Storybook documentation](https://storybook.js.org/docs/web-components/writing-stories/introduction).
+* **General Documentation** - general documentation lives in markdown files in `/stories/docs`. The existing files can be edited
+or new files can be created to cover new topics. The contents of these files can be standard Markdown or can use [MDX](https://storybook.js.org/docs/web-components/writing-docs/mdx).
+
+## Publishing
+
+Updated versions of this library are currently published to NPM manually. As are updates to the Storybook documentation hosted on Netlify.
