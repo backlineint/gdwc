@@ -1,9 +1,9 @@
 import { configure } from '@storybook/web-components';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: { expanded: true },
-}
+};
 
 // force full reload to not re-register web components
 const req = require.context('../stories', true, /\.stories\.(js|mdx)$/);

@@ -1,6 +1,6 @@
 {
   "name": "@gdwc/components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A library of generic web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by Drupal",
   "files": [
     "dist",
@@ -24,7 +24,25 @@
     "start": "npm run storybook",
     "build": "vite build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "prepare": "husky install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config",
+      "prettier"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "proseWrap": "always"
   },
   "repository": {
     "type": "git",
@@ -45,12 +63,25 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.13",
+    "@open-wc/eslint-config": "^4.2.0",
     "@storybook/addon-actions": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.21",
     "@storybook/addon-links": "^6.1.21",
     "@storybook/web-components": "^6.1.21",
     "babel-loader": "^8.2.2",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.1.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
     "lit-html": "^1.3.0",
+    "prettier": "^2.2.1",
     "vite": "^2.1.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{md,mdx}": "prettier --write"
   }
 }

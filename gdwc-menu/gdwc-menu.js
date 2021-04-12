@@ -16,28 +16,29 @@ export class GdwcMenu extends LitElement {
       }
     `;
   }
+
   static get properties() {
     return {
       /**
        * Base URL of menu endpoint
        */
-      'baseUrl': { type: String },
+      baseUrl: { type: String },
 
       /**
        * Machine name of menu
        */
-      'menuId': { type: String },
+      menuId: { type: String },
 
       /**
        * Branding heading for the menu
        */
-      'branding': { type: String },
+      branding: { type: String },
 
       /**
        * An array of objects containing data for the menu tree
        */
-      'tree': {type: Array},
-    }
+      tree: { type: Array },
+    };
   }
 
   constructor() {
@@ -54,30 +55,30 @@ export class GdwcMenu extends LitElement {
     }
   }
 
-  menuLevelTemplate(levels) {
+  static menuLevelTemplate(levels) {
     return html`<ul part="menu-level">
       ${levels}
     </ul>`;
   }
 
   menuParentTemplate(title, children) {
-    return html`<li part="menu-item">${title} ${this.renderMenuLevel(children)}</li>`;
+    return html`<li part="menu-item">
+      ${title} ${this.renderMenuLevel(children)}
+    </li>`;
   }
 
-  menuLinkTemplate(title, href) {
+  static menuLinkTemplate(title, href) {
     return html`<li part="menu-item"><a href=${href}>${title}</a></li>`;
   }
 
-  menuItemTemplate(title) {
+  static menuItemTemplate(title) {
     return html`<li part="menu-item">${title}</li>`;
   }
 
   renderMenuLevel(level) {
-    const levels = level.map((item) => {
-      return this.renderMenuItem(item);
-    });
+    const levels = level.map(item => this.renderMenuItem(item));
 
-    return this.menuLevelTemplate(levels);
+    return GdwcMenu.menuLevelTemplate(levels);
   }
 
   renderMenuItem(item) {
@@ -86,16 +87,14 @@ export class GdwcMenu extends LitElement {
     const children = item?.children;
 
     if (href) {
-      return this.menuLinkTemplate(title, href);
+      return GdwcMenu.menuLinkTemplate(title, href);
     }
-    else {
-      if (children.length) {
-        return this.menuParentTemplate(title, children);
-      }
-      else {
-        return this.menuItemTemplate(title);
-      }
+
+    if (children.length) {
+      return this.menuParentTemplate(title, children);
     }
+
+    return GdwcMenu.menuItemTemplate(title);
   }
 
   fetchData(baseURL, menuID) {
@@ -104,19 +103,20 @@ export class GdwcMenu extends LitElement {
     fetch(url, {})
       .then(response => {
         if (response.ok) {
-          return response.json()
+          return response.json();
         }
-        throw new Error(`Unable to fetch ${url}. ${response.status} ${response.statusText}`);
+        throw new Error(
+          `Unable to fetch ${url}. ${response.status} ${response.statusText}`
+        );
       })
-      .then((json => {
+      .then(json => {
         try {
           const denormalized = denormalize(json, menuID);
           this.tree = denormalized.tree;
+        } catch (e) {
+          throw new Error('Unable to denormalize menu.');
         }
-        catch (e) {
-          throw new Error(`Unable to denormalize menu.`);
-        }
-      }));
+      });
   }
 
   render() {
@@ -125,7 +125,6 @@ export class GdwcMenu extends LitElement {
         <slot name="brand"><h2>${this.branding}</h2></slot>
         ${this.renderMenuLevel(this.tree)}
       </div>
-    `
+    `;
   }
-
 }
