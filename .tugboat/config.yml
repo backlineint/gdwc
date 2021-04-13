@@ -1,0 +1,12 @@
+services:
+  apache:
+    image: tugboatqa/httpd:2.4
+    default: true
+    commands:
+      init:
+        - curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+        - apt-get install -y nodejs
+      build:
+        - npm install
+        - npm run build-storybook
+        - ln -snf "${TUGBOAT_ROOT}/storybook-static" "${DOCROOT}"
