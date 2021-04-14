@@ -86,15 +86,13 @@ export class GdwcMenu extends LitElement {
     const href = item?.link?.href;
     const children = item?.children;
 
-    if (href) {
-      return GdwcMenu.menuLinkTemplate(title, href);
-    }
-
     if (children.length) {
       return this.menuParentTemplate(title, children);
+    } else if (href) {
+      return GdwcMenu.menuLinkTemplate(title, href);
+    } else {
+      return GdwcMenu.menuItemTemplate(title);
     }
-
-    return GdwcMenu.menuItemTemplate(title);
   }
 
   fetchData(baseURL, menuID) {

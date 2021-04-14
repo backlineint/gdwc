@@ -158,6 +158,13 @@ Primary.args = {
   menuId: 'main',
 };
 
+export const DrupalWiki = Template.bind({});
+DrupalWiki.args = {
+  ...Primary.args,
+  branding: 'Wiki Menu',
+  menuId: 'drupal-wiki',
+};
+
 export const Pure = Template.bind({});
 Pure.args = {
   branding: 'Pure Menu',
