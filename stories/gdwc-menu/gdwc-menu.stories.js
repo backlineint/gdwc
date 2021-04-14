@@ -161,7 +161,7 @@ Primary.args = {
 export const Pure = Template.bind({});
 Pure.args = {
   branding: 'Pure Menu',
-  pureTree,
+  tree: pureTree,
 };
 
 export const AccountMenu = Template.bind({});
