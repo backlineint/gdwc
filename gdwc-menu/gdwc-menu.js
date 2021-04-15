@@ -38,6 +38,19 @@ export class GdwcMenu extends LitElement {
        * An array of objects containing data for the menu tree
        */
       tree: { type: Array },
+
+      /**
+       * Loading state
+       */
+      isLoading: {
+        type: Boolean,
+        attribute: false,
+      },
+
+      /**
+       * Loading message
+       */
+      loadingMessage: { type: String },
     };
   }
 
@@ -45,6 +58,8 @@ export class GdwcMenu extends LitElement {
     super();
 
     this.tree = [];
+    this.isLoading = false;
+    this.loadingMessage = 'Loading...';
   }
 
   connectedCallback() {
@@ -96,6 +111,7 @@ export class GdwcMenu extends LitElement {
   }
 
   fetchData(baseURL, menuID) {
+    this.isLoading = true;
     const url = `${baseURL}/system/menu/${menuID}/linkset`;
 
     fetch(url, {})
@@ -103,6 +119,7 @@ export class GdwcMenu extends LitElement {
         if (response.ok) {
           return response.json();
         }
+        this.isLoading = false;
         throw new Error(
           `Unable to fetch ${url}. ${response.status} ${response.statusText}`
         );
@@ -114,6 +131,7 @@ export class GdwcMenu extends LitElement {
         } catch (e) {
           throw new Error('Unable to denormalize menu.');
         }
+        this.isLoading = false;
       });
   }
 
@@ -121,7 +139,9 @@ export class GdwcMenu extends LitElement {
     return html`
       <div class="gdwc-menu">
         <slot name="brand"><h2>${this.branding}</h2></slot>
-        ${this.renderMenuLevel(this.tree)}
+        ${this.isLoading
+          ? html`<slot name="loading">${this.loadingMessage}</slot>`
+          : this.renderMenuLevel(this.tree)}
       </div>
     `;
   }

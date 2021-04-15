@@ -85,6 +85,13 @@ export default {
         type: 'object',
       },
     },
+    isLoading: {
+      description: 'Loading state',
+      table: {
+        category: 'properties',
+        type: { summary: 'boolean' },
+      },
+    },
     id: {
       table: {
         disable: true,
@@ -106,6 +113,12 @@ export default {
     },
     brand: {
       description: 'Slot that can be used to override site branding.',
+      table: {
+        category: 'slots',
+      },
+    },
+    loading: {
+      description: 'Slot that can be used to override loading message.',
       table: {
         category: 'slots',
       },
@@ -140,6 +153,7 @@ const Template = ({ branding, baseUrl, menuId, tree, id, slot }) => html`
     tree=${ifDefined(tree)}
   >
     ${slot ? html`<h1 slot="brand">👾👾👾 Brand Slot 👾👾👾</h1>` : ''}
+    ${slot ? html`<div slot="loading">⏳⏳⏳ Loading... ⏳⏳⏳</div>` : ''}
   </gdwc-menu>
 `;
 
@@ -184,8 +198,8 @@ StyledByShadowParts.args = {
   id: 'parts',
 };
 
-export const BrandSlotOverride = Template.bind({});
-BrandSlotOverride.args = {
+export const SlotOverride = Template.bind({});
+SlotOverride.args = {
   ...Primary.args,
   id: 'slotted',
   slot: true,
