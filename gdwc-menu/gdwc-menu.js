@@ -14,6 +14,12 @@ export class GdwcMenu extends LitElement {
       :host(.light) {
         background-color: lightgrey;
       }
+      .gdwc-menu li > ul {
+        display: none;
+      }
+      .gdwc-menu ul.show {
+        display: block;
+      }
     `;
   }
 
@@ -78,7 +84,16 @@ export class GdwcMenu extends LitElement {
 
   menuParentTemplate(title, children) {
     return html`<li part="menu-item">
-      ${title} ${this.renderMenuLevel(children)}
+      <a
+        @click="${GdwcMenu.openMenu}"
+        role="button"
+        aria-expanded="false"
+        aria-haspopup="true"
+        href="#"
+      >
+        ${title}
+      </a>
+      ${this.renderMenuLevel(children)}
     </li>`;
   }
 
@@ -103,11 +118,11 @@ export class GdwcMenu extends LitElement {
 
     if (children.length) {
       return this.menuParentTemplate(title, children);
-    } else if (href) {
-      return GdwcMenu.menuLinkTemplate(title, href);
-    } else {
-      return GdwcMenu.menuItemTemplate(title);
     }
+    if (href) {
+      return GdwcMenu.menuLinkTemplate(title, href);
+    }
+    return GdwcMenu.menuItemTemplate(title);
   }
 
   fetchData(baseURL, menuID) {
@@ -144,5 +159,20 @@ export class GdwcMenu extends LitElement {
           : this.renderMenuLevel(this.tree)}
       </div>
     `;
+  }
+
+  static openMenu(e) {
+    e.preventDefault();
+
+    const { target } = e;
+    const isExpanded = target.getAttribute('aria-expanded') === 'true';
+
+    if (isExpanded) {
+      target.setAttribute('aria-expanded', 'false');
+      target.nextElementSibling.classList.remove('show');
+    } else {
+      target.setAttribute('aria-expanded', 'true');
+      target.nextElementSibling.classList.add('show');
+    }
   }
 }
