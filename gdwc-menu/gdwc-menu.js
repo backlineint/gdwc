@@ -116,7 +116,7 @@ export class GdwcMenu extends LitElement {
     const href = item?.link?.href;
     const children = item?.children;
 
-    if (children.length) {
+    if (children && children.length) {
       return this.menuParentTemplate(title, children);
     }
     if (href) {
