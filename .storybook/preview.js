@@ -3,6 +3,7 @@ import { configure } from '@storybook/web-components';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: { expanded: true },
+  layout: 'fullscreen',
 };
 
 // force full reload to not re-register web components

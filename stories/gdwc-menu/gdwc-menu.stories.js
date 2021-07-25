@@ -85,6 +85,15 @@ export default {
         type: 'object',
       },
     },
+    theme: {
+      description:
+        'Theme used to trigger alternate menu presentation. Optional.',
+      table: {
+        category: 'properties',
+        type: { summary: 'string' },
+      },
+      control: { type: 'select', options: ['horizontal', 'unstyled'] },
+    },
     isLoading: {
       description: 'Loading state',
       table: {
@@ -111,6 +120,13 @@ export default {
         category: 'shadow parts',
       },
     },
+    background: {
+      description:
+        'Background color. Currently used by horizontal theme. Consuming applications can override with: gdwc-menu { --background: red; }',
+      table: {
+        category: 'css variables',
+      },
+    },
     brand: {
       description: 'Slot that can be used to override site branding.',
       table: {
@@ -126,7 +142,7 @@ export default {
   },
 };
 
-const Template = ({ branding, baseUrl, menuId, tree, id, slot }) => html`
+const Template = ({ branding, baseUrl, menuId, tree, theme, id, slot }) => html`
   <style>
     #slotted h1 {
       display: inline;
@@ -151,6 +167,7 @@ const Template = ({ branding, baseUrl, menuId, tree, id, slot }) => html`
     baseurl=${ifDefined(baseUrl)}
     menuId=${ifDefined(menuId)}
     tree=${ifDefined(tree)}
+    theme=${ifDefined(theme)}
   >
     ${slot ? html`<h1 slot="brand">👾👾👾 Brand Slot 👾👾👾</h1>` : ''}
     ${slot ? html`<div slot="loading">⏳⏳⏳ Loading... ⏳⏳⏳</div>` : ''}
@@ -170,6 +187,7 @@ Primary.args = {
   branding: 'API Driven Menu',
   baseUrl: 'https://decoupled-menus.jsonapi.dev',
   menuId: 'main',
+  theme: '',
 };
 
 export const DrupalWiki = Template.bind({});
@@ -190,6 +208,18 @@ AccountMenu.args = {
   ...Primary.args,
   branding: 'Account Menu',
   menuId: 'account',
+};
+
+export const ThemeHorizontal = Template.bind({});
+ThemeHorizontal.args = {
+  ...Primary.args,
+  theme: 'horizontal',
+};
+
+export const ThemeUnstyled = Template.bind({});
+ThemeUnstyled.args = {
+  ...Primary.args,
+  theme: 'unstyled',
 };
 
 export const StyledByShadowParts = Template.bind({});
