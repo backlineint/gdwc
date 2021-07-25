@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css } from 'lit';
 import { denormalize } from 'linkset-menu';
 
 export class GdwcMenu extends LitElement {
