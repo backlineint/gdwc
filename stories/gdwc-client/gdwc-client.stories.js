@@ -3,7 +3,7 @@ import { html } from 'lit';
 import '../../client.js';
 
 export default {
-  title: 'Data/Client',
+  title: 'Data/Client (Experimental)',
   component: 'Client',
   description: 'Client element that provides an instance of Drupal State',
   parameters: {
