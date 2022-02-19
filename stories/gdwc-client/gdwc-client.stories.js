@@ -15,12 +15,17 @@ export default {
   },
 };
 
-const Template = ({ apiRoot, debug }) =>
+const Template = ({ apiBase, apiPrefix, debug }) =>
   html`<p>See console for debug output</p>
-    <gdwc-client apiRoot=${apiRoot} ?debug=${debug}></gdwc-client>`;
+    <gdwc-client
+      apiBase=${apiBase}
+      apiPrefix=${apiPrefix}
+      ?debug=${debug}
+    ></gdwc-client>`;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  apiRoot: 'https://live-contentacms.pantheonsite.io/api',
+  apiBase: 'https://live-contentacms.pantheonsite.io',
+  apiPrefix: 'api',
   debug: true,
 };

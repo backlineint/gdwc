@@ -6,9 +6,13 @@ export class GdwcClient extends LitElement {
   static get properties() {
     return {
       /**
-       * Image source
+       * Base URL of Drupal Site
        */
-      apiRoot: { type: String },
+      apiBase: { type: String },
+      /**
+       * Prefix for JSON:API endpoints
+       */
+      apiPrefix: { type: String },
       /**
        * Debug mode flag
        */
@@ -25,13 +29,27 @@ export class GdwcClient extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    if (this.apiRoot) {
+    if (this.apiBase) {
       this.storeController = new StoreController(
         this,
-        this.apiRoot,
+        this.apiBase,
+        this.apiPrefix,
         this.debug
       );
     }
+
+    this.addEventListener(
+      'storeupdate',
+      () => {
+        for (const child of this.children) {
+          const tagName = child.tagName.toLowerCase();
+          if (tagName.startsWith('gdwc-')) {
+            child.dispatchUpdate();
+          }
+        }
+      },
+      true
+    );
     this.findGdwcChildren();
   }
 
@@ -43,7 +61,7 @@ export class GdwcClient extends LitElement {
 
   addGdwcChild(child) {
     const tagName = child.tagName.toLowerCase();
-    if (tagName.match('gdwc-query')) {
+    if (tagName.startsWith('gdwc-')) {
       child.setStoreController(this.storeController);
     }
   }

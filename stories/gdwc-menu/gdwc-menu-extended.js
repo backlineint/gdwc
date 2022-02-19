@@ -1,4 +1,4 @@
-import { html, css } from 'lit-element';
+import { html, css } from 'lit';
 import { GdwcMenu } from '../../gdwc-menu/gdwc-menu.js';
 
 export class GdwcMenuExtended extends GdwcMenu {
