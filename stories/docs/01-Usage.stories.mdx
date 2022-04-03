@@ -4,12 +4,18 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Generic Drupal Web Components
 
-Inspired by [@generic-components/components](https://www.npmjs.com/package/@generic-components/components) this project aims to create a library of generic web components that are accessible, framework agnostic, possible to style, and easy to use with data provided by [Drupal](https://www.drupal.org).
+Inspired by
+[@generic-components/components](https://www.npmjs.com/package/@generic-components/components)
+this project aims to create a library of generic web components that are
+accessible, framework agnostic, possible to style, and easy to use with data
+provided by [Drupal](https://www.drupal.org).
 
 ## Usage
 
 ### Via NPM
-Components can be installed via NPM (View [example on Codesandbox](https://codesandbox.io/s/gdwc-import-joowy)):
+
+Components can be installed via NPM (View
+[example on Codesandbox](https://codesandbox.io/s/gdwc-import-joowy)):
 
 ```bash
 npm i @gdwc/components
@@ -22,7 +28,10 @@ import '@gdwc/components/menu';
 ```
 
 ### Via CDN
-Alternatively you can load the components from a CDN and drop them in your HTML file as a script tag. (View [example on Codepen](https://codepen.io/brianperry/pen/QWdyONQ))
+
+Alternatively you can load the components from a CDN and drop them in your HTML
+file as a script tag. (View
+[example on Codepen](https://codepen.io/brianperry/pen/QWdyONQ))
 
 ```html
 <script type="module">
@@ -31,7 +40,14 @@ Alternatively you can load the components from a CDN and drop them in your HTML 
 ```
 
 ```html
-<gdwc-menu branding="Menu Heading" baseUrl="https://decoupled-menus.jsonapi.dev" menuId="main"></gdwc-menu>
+<gdwc-menu
+  branding="Menu Heading"
+  baseUrl="https://dev-ds-demo.pantheonsite.io"
+  menuId="main"
+></gdwc-menu>
 ```
 
-Note: using the baseUrl and menuId attributes with the gdwc-custom element requires a Drupal site with the [Decoupled Menus module](https://www.drupal.org/project/decoupled_menus) enabled.
+Note: using the baseUrl and menuId attributes with the gdwc-custom element
+requires a Drupal site with the
+[Decoupled Menus module](https://www.drupal.org/project/decoupled_menus)
+enabled.
