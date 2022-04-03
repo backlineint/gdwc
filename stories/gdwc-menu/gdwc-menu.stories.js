@@ -185,7 +185,7 @@ const TemplateExtended = ({ branding, baseUrl, menuId }) => html`
 export const Primary = Template.bind({});
 Primary.args = {
   branding: 'API Driven Menu',
-  baseUrl: 'https://decoupled-menus.jsonapi.dev',
+  baseUrl: 'https://dev-ds-demo.pantheonsite.io',
   menuId: 'main',
   theme: '',
 };
