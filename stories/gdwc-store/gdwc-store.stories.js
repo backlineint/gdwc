@@ -1,15 +1,15 @@
 import { html } from 'lit';
 
-import '../../client.js';
+import '../../store.js';
 
 export default {
-  title: 'Data/Client (Experimental)',
-  component: 'Client',
-  description: 'Client element that provides an instance of Drupal State',
+  title: 'Data/Store (Experimental)',
+  component: 'Store',
+  description: 'Store element that provides an instance of Drupal State',
   parameters: {
     docs: {
       description: {
-        component: 'Client element that provides an instance of Drupal State.',
+        component: 'Store element that provides an instance of Drupal State.',
       },
     },
   },
@@ -17,11 +17,11 @@ export default {
 
 const Template = ({ apiBase, apiPrefix, debug }) =>
   html`<p>See console for debug output</p>
-    <gdwc-client
+    <gdwc-store
       apiBase=${apiBase}
       apiPrefix=${apiPrefix}
       ?debug=${debug}
-    ></gdwc-client>`;
+    ></gdwc-store>`;
 
 export const Primary = Template.bind({});
 Primary.args = {

@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 
 import { StoreController } from './store-controller.js';
 
-export class GdwcClient extends LitElement {
+export class GdwcStore extends LitElement {
   static get properties() {
     return {
       /**
@@ -13,6 +13,10 @@ export class GdwcClient extends LitElement {
        * Prefix for JSON:API endpoints
        */
       apiPrefix: { type: String },
+      /**
+       * Default locale for store
+       */
+      defaultLocale: { type: String },
       /**
        * Debug mode flag
        */
@@ -34,34 +38,26 @@ export class GdwcClient extends LitElement {
         this,
         this.apiBase,
         this.apiPrefix,
+        this.defaultLocale,
         this.debug
       );
     }
 
-    this.addEventListener(
-      'storeupdate',
-      () => {
-        for (const child of this.children) {
-          const tagName = child.tagName.toLowerCase();
-          if (tagName.startsWith('gdwc-')) {
-            child.dispatchUpdate();
-          }
-        }
-      },
-      true
-    );
     this.findGdwcChildren();
   }
 
-  findGdwcChildren() {
-    for (const child of this.children) {
+  async findGdwcChildren() {
+    // First ensure children have rendered.
+    const { children } = this;
+    await Promise.all(Array.from(children).map(c => c.updateComplete));
+    for (const child of children) {
       this.addGdwcChild(child);
     }
   }
 
   addGdwcChild(child) {
     const tagName = child.tagName.toLowerCase();
-    if (tagName.startsWith('gdwc-')) {
+    if (tagName.startsWith('gdwc-provider')) {
       child.setStoreController(this.storeController);
     }
   }

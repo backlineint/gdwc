@@ -1,8 +1,8 @@
 import { html } from 'lit';
 
 import '../../card.js';
-import '../../client.js';
-import '../../query.js';
+import '../../store.js';
+import '../../provider.js';
 
 export default {
   title: 'Components/Card',
@@ -28,33 +28,42 @@ const Template = ({ imgSrc, headline, body, linkHref }) =>
 // TODO - Provide a list of recipe IDs to swap between in storybook.
 // TODO - Various improvements to how set and dispatch methods are handled.
 
-const DataTemplate = () =>
+const DataTemplate = ({ apiBase, defaultLocale, debug, objectName }) =>
   html`
-    <gdwc-client
-      apiBase="https://live-contentacms.pantheonsite.io"
-      apiPrefix="api"
-      debug="true"
+    <gdwc-store
+      apiBase=${apiBase}
+      defaultLocale=${defaultLocale}
+      ?debug=${debug}
     >
-      <gdwc-query
-        objectName="recipes"
-        include="image,image.thumbnail"
+      <gdwc-provider
+        objectName=${objectName}
+        id="616d69df-e9a1-41e9-ac4f-4d5d649f40d4"
+        include="field_media_image.field_media_image"
         query=${`{
-            body: instructions
-            headline: title
-            id
-            path {
-              linkHref: alias
-            }
-            image {
-              thumbnail {
-                imageSrc: url
+          headline: title
+          field_media_image {
+            field_media_image {
+              uri {
+                url
               }
             }
-          }`}
+          }
+          field_summary {
+            processed
+          }
+        }`}
+        debug="true"
       >
-        <gdwc-card id="a542e833-edfe-44a3-a6f1-7358b115af4b"></gdwc-card>
-      </gdwc-query>
-    </gdwc-client>
+        <template>
+          <gdwc-card
+            headline="{{ headline }}"
+            imgSrc="https://dev-ds-demo.pantheonsite.io/{{ field_media_image.field_media_image.uri.url }}"
+          >
+            {{ field_summary.processed }}
+          </gdwc-card>
+        </template>
+      </gdwc-provider>
+    </gdwc-store>
   `;
 
 export const Primary = Template.bind({});
@@ -67,3 +76,9 @@ Primary.args = {
 };
 
 export const WithData = DataTemplate.bind({});
+WithData.args = {
+  apiBase: 'https://dev-ds-demo.pantheonsite.io',
+  defaultLocale: 'en',
+  debug: true,
+  objectName: 'node--recipe',
+};

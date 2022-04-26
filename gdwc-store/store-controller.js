@@ -1,12 +1,19 @@
 import { DrupalState } from '@gdwc/drupal-state';
 
 export class StoreController {
-  constructor(host, apiBase, apiPrefix = 'jsonapi', debug = false) {
+  constructor(
+    host,
+    apiBase,
+    apiPrefix = 'jsonapi',
+    defaultLocale = '',
+    debug = false
+  ) {
     // Store a reference to the host
     this.host = host;
     this.store = new DrupalState({
       apiBase,
       apiPrefix,
+      defaultLocale,
       debug,
     });
 
@@ -24,8 +31,11 @@ export class StoreController {
   }
 
   async query({ objectName, query, id, include }) {
-    this.store.params.addInclude([include]);
-    await this.store.getObject({ objectName, id, query });
+    if (include) {
+      this.store.params.addInclude([include]);
+    }
+    const result = await this.store.getObject({ objectName, id, query });
     this.host.requestUpdate();
+    return result;
   }
 }
