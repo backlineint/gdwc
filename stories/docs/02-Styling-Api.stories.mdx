@@ -11,6 +11,72 @@ information on these approaches, consult
 
 ## Styling Hooks In Use
 
+### CSS Custom Properties
+
+With the introduction of [Open Props](https://open-props.style/) as a dependency
+to this library, CSS custom properties are the primary approach to global
+theming across this design system. Individual components may make use of a
+variety of global variables, which can be overriden either at the component
+level, or higher in the DOM in order to cascade to all components.
+
+For example, the `gdwc-card` component will set the font-family based on the
+`--gdwc-font-family` variable. If you wanted to theme cards to use a monospace
+font, you could use the following css:
+
+```css
+gdwc-card {
+  --gdwc-font-family: monospace;
+}
+```
+
+Or alternatively, the value could be one of the
+[font-family variables provided by Open Props](https://open-props.style/#typography),
+which will result in a richer set of fallback fonts.
+
+```css
+gdwc-card {
+  --gdwc-font-family: var(--font-mono);
+}
+```
+
+If you are using a variety of GDWC components, you may instead set these
+variables higher in the document scope. These variables will then automatically
+cascade to all child elements in the DOM.
+
+```css
+body {
+  --gdwc-font-family: var(--font-mono);
+}
+```
+
+Going a step further, you may also want to apply the normalize stylesheet from
+Open Props globally. This will result in consistent Open Props based theming
+being applied to all elements, not just GDWC elements.
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/open-props/normalize.min.css" />
+```
+
+The following variables may be used by GDWC components:
+
+| Variable                   | Usage                                          | Values                                                             | Required |
+| -------------------------- | ---------------------------------------------- | ------------------------------------------------------------------ | -------- |
+| --gdwc-font-family         | font-family css property                       | Open Props font family variables, any valid font-family value.     | yes      |
+| --gdwc-font-lineheight     | line-height css property                       | Open Props line hight variables, any valid line-height value.      | yes      |
+| --gdwc-text-1              | Primary text color (Open Props --text-1)       | Open Props color variables, any valid color value.                 | yes      |
+| --gdwc-text-2              | Secondary text color (Open Props --text-2)     | Open Props color variables, any valid color value.                 | yes      |
+| --gdwc-link                | Link color (Open Props --link)                 | Open Props color variables, any valid color value.                 | yes      |
+| --gdwc-link-visited        | Visited link color (Open Props --link-visited) | Open Props color variables, any valid color value.                 | yes      |
+| --gdwc-surface-1           | Primary surface color (Open Props --surface-1) | Open Props color variables, any valid color value.                 | yes      |
+| --gdwc-padding             | Element padding                                | Open Props size variables, any valid padding value.                | no       |
+| --gdwc-border-radius       | Element border-radius                          | Open Props border radius variables, any valid border radius value. | no       |
+| --gdwc-border              | Element border                                 | Any valid border value. Can include other css variables.           | no       |
+| --gdwc-background-gradient | CSS background                                 | Open Props gradient variables.                                     | no       |
+| --gdwc-shadow              | Element box shadow                             | Open props shadow variables, any valid box-shadow variable.        | no       |
+
+Required variables are used by all GDWC components. Optional variables are only
+used by components where applicable.
+
 ### Theme Property
 
 It is possible to use the `theme` property to trigger styling using a number of
@@ -176,35 +242,6 @@ customElements.get('gdwc-menu-extended') ||
   customElements.define('gdwc-menu-extended', GdwcMenuExtended);
 ```
 
-### CSS Custom Properties
-
-As this system evolves, we will likely want to make use of common CSS custom
-properties in order to make it easier to override styles consistently throughout
-all components.
-
-If for example a component implemented the following styles:
-
-```js
-static get styles() {
-  return css`
-    :host {
-      display: block;
-      background-color: var(--background);
-    }
-`;
-```
-
-Consuming applications could override it with the following css:
-
-```css
-gdwc-menu {
-  --background: red;
-}
-```
-
-Or that variable could even be set higher in scope in order to cascade to all
-components that use it.
-
 ## Not Currently Used
 
 ### Classes
@@ -239,4 +276,8 @@ component:
   menuId="main"
 >
 </gdwc-menu>
+```
+
+```
+
 ```

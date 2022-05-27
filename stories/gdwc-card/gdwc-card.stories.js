@@ -1,8 +1,11 @@
 import { html } from 'lit';
 
+import { themeControls } from '../fixtures/controls.js';
+
 import '../../card.js';
 import '../../store.js';
 import '../../provider.js';
+import '../components/gdwc-theme.js';
 
 export default {
   title: 'Components/Card',
@@ -15,18 +18,42 @@ export default {
       },
     },
   },
+  argTypes: {
+    imgSrc: {
+      table: {
+        category: 'properties',
+      },
+    },
+    headline: {
+      table: {
+        category: 'properties',
+      },
+    },
+    body: {
+      table: {
+        category: 'properties',
+      },
+    },
+    linkHref: {
+      table: {
+        category: 'properties',
+      },
+    },
+    ...themeControls,
+  },
 };
 
-const Template = ({ imgSrc, headline, body, linkHref }) =>
-  html`<gdwc-card
-    imgSrc=${imgSrc}
-    headline=${headline}
-    body=${body}
-    linkHref=${linkHref}
-  ></gdwc-card>`;
-
-// TODO - Provide a list of recipe IDs to swap between in storybook.
-// TODO - Various improvements to how set and dispatch methods are handled.
+const Template = args => {
+  const { imgSrc, headline, body, linkHref } = args;
+  return html` <gdwc-theme args=${JSON.stringify(args)}>
+    <gdwc-card
+      imgSrc=${imgSrc}
+      headline=${headline}
+      body=${body}
+      linkHref=${linkHref}
+    ></gdwc-card>
+  </gdwc-theme>`;
+};
 
 const DataTemplate = ({ apiBase, defaultLocale, debug, objectName }) =>
   html`
@@ -68,7 +95,7 @@ const DataTemplate = ({ apiBase, defaultLocale, debug, objectName }) =>
 
 export const Primary = Template.bind({});
 Primary.args = {
-  imgSrc: 'https://placeimg.com/640/480/nature',
+  imgSrc: 'https://placeimg.com/2000/500/arch',
   headline: 'Example Headline',
   body:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
