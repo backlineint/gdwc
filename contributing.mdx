@@ -68,12 +68,24 @@ have not already been installed. An example settings file is included in
 incorporate the contents into your existing settings.json file to enable format
 on save in your project.
 
+## Component Scaffolding Script
+
+To create a new component, run:
+
+    npm run create-component
+
+You will be prompted to provide an element name (e.g. my-element) and a
+description. After responding to the prompts, a new custom element and story
+will be created. Components created using this script will be pre-configured to
+take advantage of features of this library like theming via css custom
+properties.
+
 ## Project Structure
 
 - **Components** - components live in a top level directory with the same name
   as the custom element. Ex: `/gdwc-menu`
-- **Stories** - stories live in a subdirectory inside `/stories` with the same
-  name as the custom element. Ex: `/stories/gdwc-menu`
+- **Stories** - stories live alongside the custom element and have a .stories.js
+  extension.
 - **Documentation** documentation lives in the `/stories/docs` directory.
 
 ## Styling API
