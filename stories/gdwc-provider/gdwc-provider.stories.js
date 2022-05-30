@@ -30,6 +30,7 @@ const collectionTemplate = ({ apiBase, debug, objectName }) =>
         <template>
           <style>
             :host {
+              --gdwc-shadow: var(--shadow-5);
               display: grid;
               grid-template-columns: 1fr 1fr 1fr;
               grid-gap: 20px;
@@ -52,8 +53,8 @@ const resourceTemplate = ({ apiBase, debug, apiPrefix, objectName }) =>
         objectName=${objectName}
         id="b08476b6-8d10-4ac5-b539-ca3b9e8161ec"
       >
-        <template
-          ><h2>{{ title }}</h2>
+        <template>
+          <h2>{{ title }}</h2>
           <p>{{ body }}</p>
         </template>
       </gdwc-provider>

@@ -40,13 +40,6 @@ export class GdwcProvider extends LitElement {
     this.template = this.querySelector('template');
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    // Make data from the store available to the provided template
-    this.processedTemplate = this.processTemplate();
-  }
-
   async processTemplate() {
     // Ensure that we get data back from our provider before rendering
     await super.getUpdateComplete();
@@ -88,6 +81,9 @@ export class GdwcProvider extends LitElement {
 
   setStoreController(storeController) {
     this.storeController = storeController;
+
+    // Make data from the store available to the provided template
+    this.processedTemplate = this.processTemplate();
   }
 
   render() {
