@@ -14,7 +14,7 @@ import '../<%= elementName %>.js';
 import '../stories/components/gdwc-theme.js';
 
 export default {
-  title: 'Components/<%= title %>',
+  title: '<%= category %>/<%= title %>',
   component: '<%= title %>',
   description: '<%= description %>',
   parameters: {

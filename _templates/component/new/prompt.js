@@ -13,6 +13,12 @@ module.exports = [
     validate: validateElement,
   },
   {
+    type: 'select',
+    name: 'category',
+    message: 'Select story category',
+    choices: ['Elements', 'Components', 'Data'],
+  },
+  {
     type: 'input',
     name: 'description',
     message: `Enter element description:`,
