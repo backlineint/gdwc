@@ -1,3 +1,4 @@
+import './button.js';
 import './menu.js';
 import './store.js';
 import './provider.js';
