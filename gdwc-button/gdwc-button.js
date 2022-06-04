@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit';
 
 import normalize from '../styles/normalize.css.js';
 import theme from '../styles/theme.css.js';
+import buttons from '../styles/buttons.css.js';
 
 export class GdwcButton extends LitElement {
   static get properties() {
@@ -34,9 +35,9 @@ export class GdwcButton extends LitElement {
     return [
       normalize,
       theme,
+      buttons,
       css`
         :host {
-          display: block;
           /* Uncomment lines below to support additional CSS variables.
           Delete commented lines if variable is not supported. */
           /* padding: var(--gdwc-padding, var(--size-3));
@@ -50,13 +51,8 @@ export class GdwcButton extends LitElement {
   }
 
   render() {
-    // TODO - correct inject button styles into component
-    return html`<link
-        rel="stylesheet"
-        href="https://unpkg.com/open-props/buttons.min.css"
-      />
-      <button type=${this.type} ?disabled=${this.disabled}>
-        <slot></slot>
-      </button>`;
+    return html` <button type=${this.type} ?disabled=${this.disabled}>
+      <slot></slot>
+    </button>`;
   }
 }
