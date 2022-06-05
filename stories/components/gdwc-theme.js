@@ -25,6 +25,7 @@ export class GdwcTheme extends LitElement {
       gdwcPadding,
       gdwcBorderRadius,
       gdwcBorder,
+      gdwcBorderColor,
       gdwcBackgroundGradient,
       gdwcShadow,
     } = this.args;
@@ -51,6 +52,9 @@ export class GdwcTheme extends LitElement {
             ? `var(${gdwcBorderRadius})`
             : null,
           '--gdwc-border': gdwcBorder ? `${gdwcBorder}` : null,
+          '--gdwc-border-color': gdwcBorderColor
+            ? `var(${gdwcBorderColor})`
+            : null,
           '--gdwc-background-image': gdwcBackgroundGradient
             ? `var(${gdwcBackgroundGradient})`
             : null,

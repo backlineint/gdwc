@@ -133,7 +133,7 @@ const controls = {
       '--orange-9',
     ],
     control: { type: 'select' },
-    description: 'Open Props color values',
+    description: 'Open Props color values. Can also use any valid color value.',
     table: {
       category: 'css variables',
     },
@@ -284,6 +284,7 @@ export const themeControls = {
   gdwcPadding: controls.sizes,
   gdwcBorderRadius: controls.radii,
   gdwcBorder: controls.border,
+  gdwcBorderColor: controls.colors,
   gdwcBackgroundGradient: controls.gradients,
   gdwcShadow: controls.shadows,
 };

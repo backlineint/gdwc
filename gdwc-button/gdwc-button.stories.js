@@ -41,6 +41,15 @@ export default {
     },
     ...themeControls,
     gdwcText1: {
+      table: {
+        category: 'unused',
+      },
+      control: { disable: true },
+    },
+    gdwcBorder: {
+      table: {
+        category: 'unused',
+      },
       control: { disable: true },
     },
   },
