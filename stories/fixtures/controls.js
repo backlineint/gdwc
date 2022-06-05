@@ -278,6 +278,8 @@ export const themeControls = {
   gdwcText2: controls.colors,
   gdwcLink: controls.colors,
   gdwcLinkVisited: controls.colors,
+  gdwcBgLight: controls.colors,
+  gdwcBgDark: controls.colors,
   gdwcSurface1: controls.colors,
   gdwcPadding: controls.sizes,
   gdwcBorderRadius: controls.radii,

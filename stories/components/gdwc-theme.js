@@ -20,6 +20,8 @@ export class GdwcTheme extends LitElement {
       gdwcLink,
       gdwcLinkVisited,
       gdwcSurface1,
+      gdwcBgLight,
+      gdwcBgDark,
       gdwcPadding,
       gdwcBorderRadius,
       gdwcBorder,
@@ -42,6 +44,8 @@ export class GdwcTheme extends LitElement {
           '--gdwc-text-1': gdwcText1 ? `var(${gdwcText1})` : null,
           '--gdwc-text-2': gdwcText2 ? `var(${gdwcText2})` : null,
           '--gdwc-surface-1': gdwcSurface1 ? `var(${gdwcSurface1})` : null,
+          '--gdwc-bg-light': gdwcBgLight ? `var(${gdwcBgLight})` : null,
+          '--gdwc-bg-dark': gdwcBgDark ? `var(${gdwcBgDark})` : null,
           '--gdwc-padding': gdwcPadding ? `var(${gdwcPadding})` : null,
           '--gdwc-border-radius': gdwcBorderRadius
             ? `var(${gdwcBorderRadius})`

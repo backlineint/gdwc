@@ -40,6 +40,9 @@ export default {
       },
     },
     ...themeControls,
+    gdwcText1: {
+      control: { disable: true },
+    },
   },
 };
 
