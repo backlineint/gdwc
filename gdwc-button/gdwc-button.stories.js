@@ -39,6 +39,13 @@ export default {
         category: 'properties',
       },
     },
+    primary: {
+      description: 'If button uses primary variant',
+      control: 'boolean',
+      table: {
+        category: 'properties',
+      },
+    },
     ...themeControls,
     gdwcText1: {
       table: {
@@ -56,9 +63,11 @@ export default {
 };
 
 const Template = args => {
-  const { text, type, disabled } = args;
+  const { text, type, disabled, primary } = args;
   return html` <gdwc-theme args=${JSON.stringify(args)}>
-    <gdwc-button type=${type} ?disabled=${disabled}>${text}</gdwc-button>
+    <gdwc-button ?primary=${primary} type=${type} ?disabled=${disabled}
+      >${text}</gdwc-button
+    >
   </gdwc-theme>`;
 };
 
@@ -67,4 +76,11 @@ Primary.args = {
   text: 'button text',
   type: 'button',
   disabled: false,
+  primary: true,
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  ...Primary.args,
+  primary: false,
 };

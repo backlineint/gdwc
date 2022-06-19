@@ -23,7 +23,13 @@ export default {
 };
 
 const Template = args => html` <gdwc-theme args=${JSON.stringify(args)}>
-  <gdwc-card headline="This is a card"><p>This is card body</p></gdwc-card>
+  <gdwc-card headline="This is a card"
+    ><p>
+      This is card body<gdwc-button type="button" primary="true"
+        >A Button!</gdwc-button
+      >
+    </p></gdwc-card
+  >
   <gdwc-button type="button">A Button!</gdwc-button>
 </gdwc-theme>`;
 
