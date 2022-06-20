@@ -51,12 +51,9 @@ export class GdwcButton extends LitElement {
           border-radius: var(--gdwc-border-radius, var(--radius-2));
           background-image: var(--gdwc-background-image);
           --_border: var(--gdwc-border-color, var(--surface-3));
-          /* --_highlight-light: hsl(210 10% 71%/25%); */
+          --_highlight-light: var(--gdwc-highlight-light, hsl(210 10% 71%/25%));
+          --_highlight-dark: var(--gdwc-highlight-dark, hsl(210 10% 5%/25%));
           /* --_ink-shadow-light: 0 1px 0 var(--red-3); */
-          /* Uncomment lines below to support additional CSS variables.
-          Delete commented lines if variable is not supported. */
-          /*
-          box-shadow: var(--gdwc-shadow); */
         }
         button:hover {
           --_bg: var(--_bg-light);

@@ -28,6 +28,8 @@ export class GdwcTheme extends LitElement {
       gdwcBorderColor,
       gdwcBackgroundGradient,
       gdwcShadow,
+      gdwcHighlightLight,
+      gdwcHighlightDark,
     } = this.args;
     return html`
       <div
@@ -59,6 +61,12 @@ export class GdwcTheme extends LitElement {
             ? `var(${gdwcBackgroundGradient})`
             : null,
           '--gdwc-shadow': gdwcShadow ? `var(${gdwcShadow})` : null,
+          '--gdwc-highlight-light': gdwcHighlightLight
+            ? `var(${gdwcHighlightLight})`
+            : null,
+          '--gdwc-highlight-dark': gdwcHighlightDark
+            ? `var(${gdwcHighlightDark})`
+            : null,
         })}
       >
         <slot></slot>

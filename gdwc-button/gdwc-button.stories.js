@@ -17,10 +17,10 @@ export default {
     },
   },
   argTypes: {
-    text: {
-      description: 'Button text',
+    defaultSlot: {
+      description: 'Default slot',
       table: {
-        category: 'properties',
+        category: 'slots',
       },
     },
     type: {
@@ -59,21 +59,45 @@ export default {
       },
       control: { disable: true },
     },
+    gdwcLink: {
+      table: {
+        category: 'unused',
+      },
+      control: { disable: true },
+    },
+    gdwcLinkVisited: {
+      table: {
+        category: 'unused',
+      },
+      control: { disable: true },
+    },
+    gdwcSurface1: {
+      table: {
+        category: 'unused',
+      },
+      control: { disable: true },
+    },
+    gdwcShadow: {
+      table: {
+        category: 'unused',
+      },
+      control: { disable: true },
+    },
   },
 };
 
 const Template = args => {
-  const { text, type, disabled, primary } = args;
+  const { defaultSlot, type, disabled, primary } = args;
   return html` <gdwc-theme args=${JSON.stringify(args)}>
     <gdwc-button ?primary=${primary} type=${type} ?disabled=${disabled}
-      >${text}</gdwc-button
+      >${defaultSlot}</gdwc-button
     >
   </gdwc-theme>`;
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
-  text: 'button text',
+  defaultSlot: 'button text',
   type: 'button',
   disabled: false,
   primary: true,
