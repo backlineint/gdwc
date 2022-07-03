@@ -30,6 +30,8 @@ export class GdwcTheme extends LitElement {
       gdwcShadow,
       gdwcHighlightLight,
       gdwcHighlightDark,
+      gdwcInkShadowColorLight,
+      gdwcInkShadowColorDark,
     } = this.args;
     return html`
       <div
@@ -66,6 +68,12 @@ export class GdwcTheme extends LitElement {
             : null,
           '--gdwc-highlight-dark': gdwcHighlightDark
             ? `var(${gdwcHighlightDark})`
+            : null,
+          '--gdwc-ink-shadow-color-light': gdwcInkShadowColorLight
+            ? `var(${gdwcInkShadowColorLight})`
+            : null,
+          '--gdwc-ink-shadow-color-dark': gdwcInkShadowColorDark
+            ? `var(${gdwcInkShadowColorDark})`
             : null,
         })}
       >

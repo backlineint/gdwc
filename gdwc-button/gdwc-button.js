@@ -53,7 +53,10 @@ export class GdwcButton extends LitElement {
           --_border: var(--gdwc-border-color, var(--surface-3));
           --_highlight-light: var(--gdwc-highlight-light, hsl(210 10% 71%/25%));
           --_highlight-dark: var(--gdwc-highlight-dark, hsl(210 10% 5%/25%));
-          /* --_ink-shadow-light: 0 1px 0 var(--red-3); */
+          --_ink-shadow-light: 0 1px 0
+            var(--gdwc-ink-shadow-color-light, var(--gray-3));
+          --_ink-shadow-dark: 0 1px 0
+            var(--gdwc-ink-shadow-color-dark, var(--surface-1));
         }
         button:hover {
           --_bg: var(--_bg-light);

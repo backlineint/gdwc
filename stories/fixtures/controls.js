@@ -289,6 +289,8 @@ export const themeControls = {
   gdwcShadow: controls.shadows,
   gdwcHighlightLight: controls.colors,
   gdwcHighlightDark: controls.colors,
+  gdwcInkShadowColorLight: controls.colors,
+  gdwcInkShadowColorDark: controls.colors,
 };
 
 export default controls;
