@@ -1,4 +1,4 @@
-const controls = {
+export const controls = {
   colors: {
     options: [
       '--gray-0',
@@ -261,6 +261,14 @@ const controls = {
       category: 'css variables',
     },
   },
+  headingLevels: {
+    options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    control: { type: 'select' },
+    description: 'Heading level values',
+    table: {
+      category: 'properties',
+    },
+  },
   border: {
     description:
       'CSS border value. Can contain variables. Ex: var(--border-size-5) solid var(--orange-4)',
@@ -285,5 +293,3 @@ export const themeControls = {
   gdwcBackgroundGradient: controls.gradients,
   gdwcShadow: controls.shadows,
 };
-
-export default controls;
