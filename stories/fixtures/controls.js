@@ -222,6 +222,37 @@ export const controls = {
       category: 'css variables',
     },
   },
+  rel: {
+    options: [
+      'alternate',
+      'author',
+      'bookmark',
+      'external',
+      'help',
+      'license',
+      'next',
+      'nofollow',
+      'noopener',
+      'noreferrer',
+      'prev',
+      'search',
+      'tag',
+    ],
+    control: { type: 'select' },
+    description: 'Link rel values',
+    table: {
+      category: 'properties',
+    },
+  },
+  target: {
+    options: ['_blank', '_self', '_parent', '_top'],
+    control: { type: 'select' },
+    description: 'Link target values',
+    table: {
+      category: 'properties',
+    },
+  },
+
   sizes: {
     options: [
       '--size-1',
@@ -269,6 +300,7 @@ export const controls = {
       category: 'properties',
     },
   },
+
   border: {
     description:
       'CSS border value. Can contain variables. Ex: var(--border-size-5) solid var(--orange-4)',
