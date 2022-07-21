@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 import { themeControls } from '../stories/fixtures/controls.js';
 
@@ -24,7 +25,7 @@ export default {
       },
     },
     type: {
-      options: ['button', 'submit', 'reset', 'menu'],
+      options: ['button', 'submit', 'reset'],
       control: { type: 'select' },
       description: 'Button types',
       table: {
@@ -89,7 +90,10 @@ export default {
 const Template = args => {
   const { defaultSlot, type, disabled, primary } = args;
   return html` <gdwc-theme args=${JSON.stringify(args)}>
-    <gdwc-button ?primary=${primary} type=${type} ?disabled=${disabled}
+    <gdwc-button
+      ?primary=${primary}
+      type=${ifDefined(type)}
+      ?disabled=${disabled}
       >${defaultSlot}</gdwc-button
     >
   </gdwc-theme>`;
@@ -98,7 +102,6 @@ const Template = args => {
 export const Primary = Template.bind({});
 Primary.args = {
   defaultSlot: 'button text',
-  type: 'button',
   disabled: false,
   primary: true,
 };

@@ -63,7 +63,6 @@ export default css`
     }
   }
   :where(button, button[type], input[type='button'], input[type='submit'], input[type='reset'])[disabled] {
-    --_bg: none;
     --_text: var(--gray-6);
     box-shadow: var(--shadow-1);
     cursor: not-allowed;
