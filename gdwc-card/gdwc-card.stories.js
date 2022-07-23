@@ -1,11 +1,11 @@
 import { html } from 'lit';
 
-import { themeControls } from '../fixtures/controls.js';
+import { themeControls } from '../stories/fixtures/controls.js';
 
-import '../../card.js';
-import '../../store.js';
-import '../../provider.js';
-import '../components/gdwc-theme.js';
+import '../card.js';
+import '../store.js';
+import '../provider.js';
+import '../stories/components/gdwc-theme.js';
 
 export default {
   title: 'Components/Card',

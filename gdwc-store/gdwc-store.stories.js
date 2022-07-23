@@ -1,6 +1,6 @@
 import { html } from 'lit';
 
-import '../../store.js';
+import '../store.js';
 
 export default {
   title: 'Data/Store (Experimental)',

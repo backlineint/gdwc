@@ -1,8 +1,8 @@
 import { html } from 'lit';
 
-import '../../store.js';
-import '../../provider.js';
-import '../../card.js';
+import '../store.js';
+import '../provider.js';
+import '../card.js';
 
 export default {
   title: 'Data/Provider (Experimental)',

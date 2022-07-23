@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import '../../menu.js';
-import './gdwc-menu-extended.js';
+import '../menu.js';
+import '../stories/components/gdwc-menu-extended.js';
 
 const pureTree = JSON.stringify([
   {
