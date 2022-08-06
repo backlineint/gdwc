@@ -1,24 +1,9 @@
----
-to: gdwc-<%= elementName %>/gdwc-<%= elementName %>.js
----
-<%
-  className = 'Gdwc' + h.changeCase.pascal(elementName);
-%>
 import { LitElement, html, css } from 'lit';
 
 import normalize from '../styles/normalize.css.js';
 import theme from '../styles/theme.css.js';
 
-export class <%= className %> extends LitElement {
-  static get properties() {
-    return {
-      /**
-       * Example property
-       */
-      example: { type: String },
-    };
-  }
-
+export class GdwcContainer extends LitElement {
   static get styles() {
     return [
       normalize,
@@ -28,22 +13,21 @@ export class <%= className %> extends LitElement {
           display: block;
           /* Uncomment lines below to support additional CSS variables.
           Delete commented lines if variable is not supported. */
-          /* padding: var(--gdwc-padding, var(--size-3));
+          padding: var(--gdwc-padding, var(--size-3));
           background-image: var(--gdwc-background-image);
           border: var(--gdwc-border, none) !important;
           border-radius: var(--gdwc-border-radius);
-          box-shadow: var(--gdwc-shadow); */
+          box-shadow: var(--gdwc-shadow);
         }
       `,
     ];
   }
 
   render() {
-    return html` <div class="gdwc-<%= elementName %>">
-      <h2>${this.example}</h2>
-      <slot>Slotted Content</slot>
-    </div> `;
+    return html`
+      <div class="gdwc-container">
+        <slot></slot>
+      </div>
+    `;
   }
 }
-
-

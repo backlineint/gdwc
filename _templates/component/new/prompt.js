@@ -16,7 +16,7 @@ module.exports = [
     type: 'select',
     name: 'category',
     message: 'Select story category',
-    choices: ['Elements', 'Components', 'Data'],
+    choices: ['Elements', 'Components', 'Layout', 'Data'],
   },
   {
     type: 'input',
