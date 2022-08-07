@@ -222,6 +222,21 @@ export const controls = {
       category: 'css variables',
     },
   },
+  aspectRatio: {
+    options: [
+      'square',
+      'landscape',
+      'portrait',
+      'widescreen',
+      'ultrawide',
+      'golden',
+    ],
+    control: { type: 'select' },
+    description: 'Open Props aspect-ratios',
+    table: {
+      category: 'css variables',
+    },
+  },
   rel: {
     options: [
       'alternate',

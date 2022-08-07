@@ -1,0 +1,30 @@
+{
+  "type": "file--file",
+  "id": "698dc33e-9b22-4609-80fe-a61177a77e07",
+  "drupal_internal__fid": 1,
+  "langcode": "en",
+  "filename": "mediterranean-quiche-umami.jpg",
+  "uri": {
+    "value": "public://mediterranean-quiche-umami.jpg",
+    "url": "/sites/default/files/mediterranean-quiche-umami.jpg"
+  },
+  "filemime": "image/jpeg",
+  "filesize": 70160,
+  "status": true,
+  "created": "2022-02-16T22:40:41+00:00",
+  "changed": "2022-02-16T22:40:41+00:00",
+  "links": {
+    "self": {
+      "href": "https://dev-ds-demo.pantheonsite.io/en/jsonapi/file/file/698dc33e-9b22-4609-80fe-a61177a77e07"
+    }
+  },
+  "resourceIdObjMeta": {
+    "alt": "A delicious deep layered Mediterranean quiche with basil garnish",
+    "title": null,
+    "width": 768,
+    "height": 511,
+    "drupal_internal__target_id": 1
+  },
+  "uid": null,
+  "relationshipNames": ["uid"]
+}
