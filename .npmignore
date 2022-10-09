@@ -1,0 +1,19 @@
+
+## editors
+/.idea
+.vscode
+
+# Storybook
+storybook-static
+public
+
+# Misc
+.eslintcache
+
+# Unrelated project files
+_templates
+.husky
+.storybook
+.tugboat
+stories
+.gitlab-ci.yml
