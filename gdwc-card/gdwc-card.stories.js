@@ -39,6 +39,27 @@ export default {
         category: 'properties',
       },
     },
+    'part(card)': {
+      description:
+        'Stylable part for outer card container. Example selector: gdwc-card::part(card) {}',
+      table: {
+        category: 'shadow parts',
+      },
+    },
+    'part(image)': {
+      description:
+        'Stylable part for card image. Example selector: gdwc-card::part(image) {}',
+      table: {
+        category: 'shadow parts',
+      },
+    },
+    'part(body)': {
+      description:
+        'Stylable part for card body. Example selector: gdwc-card::part(body) {}',
+      table: {
+        category: 'shadow parts',
+      },
+    },
     ...themeControls,
   },
 };
@@ -97,8 +118,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   imgSrc: 'https://placeimg.com/2000/500/arch',
   headline: 'Example Headline',
-  body:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   linkHref: 'https://www.google.com',
 };
 

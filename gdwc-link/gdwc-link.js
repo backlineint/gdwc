@@ -69,14 +69,12 @@ export class GdwcLink extends LitElement {
    */
   processData(data) {
     if (data?.uri) {
-      // TODO -remove 'internal:' or 'entity:' if included in the URI
       const customizedUri = data.uri
         .replace('entity:', '/')
         .replace('internal:', '');
       this.href = customizedUri;
     }
 
-    // Todo - if data has a title, set the title attribute on the link.
     if (data?.title) {
       this.title = data.title;
     }

@@ -50,13 +50,13 @@ export class GdwcCard extends LitElement {
 
   render() {
     return html`
-      <div class="gdwc-card">
+      <div class="gdwc-card" part="card">
         ${this.imgSrc
-          ? html`<div class="gdwc-card__image">
+          ? html`<div class="gdwc-card__image" part="image">
               <img src="${this.imgSrc}" alt="" />
             </div>`
           : ''}
-        <div class="gdwc-card__body">
+        <div class="gdwc-card__body" part="body">
           <h2>${this.headline}</h2>
           <slot><p>${this.body}</p></slot>
           <a href="${this.linkHref}">Read more</a>

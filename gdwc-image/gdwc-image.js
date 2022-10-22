@@ -32,6 +32,7 @@ export class GdwcImage extends LitElement {
       theme,
       css`
         :host {
+          display: block;
           border: var(--gdwc-border, none) !important;
           border-radius: var(--gdwc-border-radius);
           box-shadow: var(--gdwc-shadow);
