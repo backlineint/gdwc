@@ -3,6 +3,7 @@ import { html } from 'lit';
 import '../store.js';
 import '../provider.js';
 import '../card.js';
+import '../container.js';
 
 export default {
   title: 'Data/Provider (Experimental)',
@@ -24,7 +25,7 @@ const collectionTemplate = ({ apiBase, debug, objectName }) =>
     <gdwc-store apiBase=${apiBase} ?debug=${debug}>
       <gdwc-provider
         objectName=${objectName}
-        include="field_media_image.field_media_image"
+        params="include=field_media_image.field_media_image"
         ?debug=${debug}
       >
         <template>
@@ -51,11 +52,18 @@ const resourceTemplate = ({ apiBase, debug, apiPrefix, objectName }) =>
     <gdwc-store apiBase=${apiBase} apiPrefix=${apiPrefix} ?debug=${debug}>
       <gdwc-provider
         objectName=${objectName}
-        id="b08476b6-8d10-4ac5-b539-ca3b9e8161ec"
+        id="c1a87e33-06a7-4c76-97dd-85b8d6fcd45b"
       >
         <template>
-          <h2>{{ title }}</h2>
-          <p>{{ body }}</p>
+          <style>
+            :host {
+              --gdwc-padding: var(--size-6);
+            }
+          </style>
+          <gdwc-container>
+            <h2>{{ title }}</h2>
+            <p>{{ body.processed }}</p>
+          </gdwc-container>
         </template>
       </gdwc-provider>
     </gdwc-store>
@@ -71,8 +79,8 @@ Collection.args = {
 
 export const Resource = resourceTemplate.bind({});
 Resource.args = {
-  apiBase: 'https://live-contentacms.pantheonsite.io',
-  apiPrefix: 'api',
+  apiBase: 'https://dev-ds-demo.pantheonsite.io',
+  apiPrefix: 'jsonapi',
   debug: true,
-  objectName: 'pages',
+  objectName: 'node--page',
 };

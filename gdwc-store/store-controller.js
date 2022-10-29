@@ -30,11 +30,8 @@ export class StoreController {
     this.host.dispatchEvent(this.storeEvent);
   }
 
-  async query({ objectName, query, id, include }) {
-    if (include) {
-      this.store.params.addInclude([include]);
-    }
-    const result = await this.store.getObject({ objectName, id, query });
+  async query({ objectName, params, id }) {
+    const result = await this.store.getObject({ objectName, id, params });
     this.host.requestUpdate();
     return result;
   }

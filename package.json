@@ -44,7 +44,7 @@
   ],
   "license": "GPL-2.0-or-later",
   "dependencies": {
-    "@gdwc/drupal-state": "^2.5.2",
+    "@gdwc/drupal-state": "^4.1.0",
     "linkset-menu": "0.0.2",
     "lit": "^2.2.7",
     "object-path": "^0.11.8",

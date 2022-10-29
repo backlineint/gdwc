@@ -19,13 +19,9 @@ export class GdwcProvider extends LitElement {
        */
       id: { type: String },
       /**
-       * Relationships to be included.
+       * json:api query parameter values
        */
-      include: { type: String },
-      /**
-       * A GraphQL query to be used when retrieving the object.
-       */
-      query: { type: String },
+      params: { type: String },
       /**
        * Flag for debug mode
        */
@@ -46,8 +42,7 @@ export class GdwcProvider extends LitElement {
     const store = await this.storeController.query({
       objectName: this.objectName,
       id: this.id,
-      query: this.query,
-      include: this.include,
+      params: this.params,
     });
 
     if (this.debug) {
