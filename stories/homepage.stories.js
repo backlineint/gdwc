@@ -51,7 +51,7 @@ const banner = html`<gdwc-store apiBase="https://dev-ds-demo.pantheonsite.io/">
   <gdwc-provider
     objectName="block_content--banner_block"
     id="9aadf4a1-ded6-4017-a10d-a5e043396edf"
-    include="field_media_image.field_media_image"
+    params="include=field_media_image.field_media_image"
   >
     <template>
       <style>
@@ -165,7 +165,7 @@ const Template = args => html` <gdwc-theme args=${JSON.stringify(args)}>
       <gdwc-provider
         objectName="node--article"
         id="5d091b54-417c-47c6-9146-35df80d6bb6e"
-        include="field_media_image.field_media_image"
+        params="include=field_media_image.field_media_image"
       >
         <template>
           <gdwc-card
@@ -177,7 +177,7 @@ const Template = args => html` <gdwc-theme args=${JSON.stringify(args)}>
       <gdwc-provider
         objectName="node--recipe"
         id="da1359f4-2e60-462c-8909-47c3bce11fdf"
-        include="field_media_image.field_media_image"
+        params="include=field_media_image.field_media_image"
       >
         <template>
           <gdwc-card
@@ -189,7 +189,7 @@ const Template = args => html` <gdwc-theme args=${JSON.stringify(args)}>
       <gdwc-provider
         objectName="node--recipe"
         id="50c3e7c9-64a9-453c-9289-278132beb4a2"
-        include="field_media_image.field_media_image"
+        params="include=field_media_image.field_media_image"
       >
         <template>
           <gdwc-card
