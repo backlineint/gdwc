@@ -1,3 +1,4 @@
+import './icon.js';
 import './button.js';
 import './card.js';
 import './container.js';
