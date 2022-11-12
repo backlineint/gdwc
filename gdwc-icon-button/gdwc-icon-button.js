@@ -1,5 +1,7 @@
 import { LitElement, html, css } from 'lit';
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+
+import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
 
 import normalize from '../styles/normalize.css.js';
@@ -7,15 +9,22 @@ import theme from '../styles/theme.css.js';
 
 setBasePath('../../node_modules/@shoelace-style/shoelace/dist');
 
-export class GdwcIcon extends LitElement {
+export class GdwcIconButton extends LitElement {
   static get properties() {
     return {
       /**
        * Icon name
        */
       name: { type: String },
+      /**
+       * Href converts the button to a link
+       */
+      href: { type: String },
+      /**
+       * Display button as disabled
+       */
+      disabled: { type: Boolean },
     };
-    // Todo - add label prop
   }
 
   static get styles() {
@@ -33,8 +42,13 @@ export class GdwcIcon extends LitElement {
 
   render() {
     return html`
-      <div class="gdwc-icon">
-        <sl-icon name="${this.name}"></sl-icon>
+      <div class="gdwc-icon-button">
+        <sl-icon-button
+          name="${this.name}"
+          href=${ifDefined(this.href)}
+          disabled=${ifDefined(this.disabled)}
+        >
+        </sl-icon-button>
       </div>
     `;
   }
