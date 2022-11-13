@@ -36,6 +36,18 @@ export class GdwcIconButton extends LitElement {
           color: var(--gdwc-icon-color, var(--gdwc-text-1));
           font-size: var(--gdwc-icon-font-size);
         }
+        :host([theme='dark']) sl-icon-button::part(base),
+        :host([theme='dark']) sl-icon-button::part(base):hover,
+        :host([theme='dark']) sl-icon-button::part(base):focus,
+        :host([theme='dark']) sl-icon-button::part(base):active {
+          color: var(--gdwc-icon-color, var(--gdwc-text-1));
+        }
+        :host([theme='light']) sl-icon-button::part(base),
+        :host([theme='light']) sl-icon-button::part(base):hover,
+        :host([theme='light']) sl-icon-button::part(base):focus,
+        :host([theme='light']) sl-icon-button::part(base):active {
+          color: var(--gdwc-icon-color, var(--gdwc-text-1));
+        }
       `,
     ];
   }

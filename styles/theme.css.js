@@ -29,4 +29,15 @@ export default css`
       --surface-1: var(--gdwc-surface-1, var(--gray-9));
     }
   }
+
+  :host([theme='dark']) {
+    --text-1: var(--gdwc-text-1, var(--gray-1));
+    --text-2: var(--gdwc-text-2, var(--gray-4));
+    --surface-1: var(--gdwc-surface-1, var(--gray-9));
+  }
+  :host([theme='light']) {
+    --text-1: var(--gdwc-text-1, var(--gray-9));
+    --text-2: var(--gdwc-text-2, var(--gray-7));
+    --surface-1: var(--gdwc-surface-1, var(--gray-0));
+  }
 `;

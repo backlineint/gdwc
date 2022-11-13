@@ -1,3 +1,4 @@
+import './color-scheme-toggle.js';
 import './icon-button.js';
 import './icon.js';
 import './button.js';
